@@ -12,9 +12,13 @@
 
 (b) First of all, according to Amdahl's law, the speedup of N-cores parallel computing is not only up to the number of cores (processors) we use but also up to the fraction of parallel and serial code. Therefore, the speedup isn't linear. In addition, there are two bottlenecks in the multicore CPU computing process: the computing bottleneck and the memory bottleneck. In this simulation task, the computing bottleneck do exist. As a result, as the number of cores increases, the speedup couldn't increase linearly.  
 
-### 2. Clocking CPU parallelism
+### 2. Clocking GPU parallelism
 
-4. Due to the special situation we have recently, the stock of stores are changing rapidly, thus you may not get the desired number of items in the test result. But we can ensure that you can get a small sample of data after running the test code.
+(a) It takes 3.9098713397979736s to run.
+
+(b) This is quite longer than mpi4py implementation.
+
+### 3. Embarrassingly parallel processing: grid search
 
 5. **Web Scraping** performance highly depends on the network. Please make sure that you have a **good network** before you run the test.
 
