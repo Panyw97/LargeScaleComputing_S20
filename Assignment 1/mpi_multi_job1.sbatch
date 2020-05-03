@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #SBATCH --job-name=mpi_multi_job
-#SBATCH --ntasks=20
+#SBATCH --ntasks=3
 #SBATCH --partition=broadwl
 #SBATCH --constraint=fdr
 
@@ -9,7 +9,7 @@
 module load mpi4py/3.0.1a0_py3
 
 # Run the python program with mpirun, using & to run jobs at the same time
-for (( i = 1; i < 21; i++ )); 
+for (( i = 1; i < 4; i++ )); 
 do
 	mpirun -n $i python ./clock.py >> ./mpi.out
 done

@@ -36,8 +36,14 @@ def sim_life_parallel(n_runs):
             z_mat[t_ind, s_ind] = z_t
             z_tm1 = z_t
 
-    time_elapsed = time.time() - t0
-    print(size, ':', time_elapsed)
+# Gather all simulation arrays to buffer of expected size/dtype on rank 0
+    z_all = None
+    if rank == 0:
+        z_all = np.empty([T, N * size], dtype='float')
+    comm.Gather(sendbuf = z_mat, recvbuf = z_all, root=0)
+    if rank == 0:
+        time_elapsed = time.time() - t0
+        print(size, ':', time_elapsed)
     return
 
 def main():
