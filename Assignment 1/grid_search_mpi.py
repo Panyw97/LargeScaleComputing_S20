@@ -42,6 +42,7 @@ def sim_life_parallel(n_runs):
                 z_mat[t_ind, s_ind] = z_t
                 z_tm1 = z_t
         p_avg = mean(p)
+        print(rho, p_avg)
         p_avg_dict[rho] = p_avg
     opt_rho = min(p_avg_dict, key=p_avg_dict.get)
     opt_p = p_avg_dict[opt_rho]
