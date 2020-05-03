@@ -37,7 +37,7 @@ def sim_life_parallel(n_runs):
             z_tm1 = z_t
 
     time_elapsed = time.time() - t0
-    print(size, time_elapsed)
+    print(size, ':', time_elapsed)
     return
 
 def main():
