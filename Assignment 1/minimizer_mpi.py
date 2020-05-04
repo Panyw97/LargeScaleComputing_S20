@@ -52,10 +52,10 @@ def minimizer(n_runs):
         opt_rho = results.x
         opt_p = -results.fun
 
-    time_elapsed = time.time() - t0
-    print("The optimal rho is", opt_rho)
-    print("The period is", opt_p)
-    print("Computation Time:", time_elapsed)
+        time_elapsed = time.time() - t0
+        print("The optimal rho is", opt_rho)
+        print("The period is", opt_p)
+        print("Computation Time:", time_elapsed)
 def main():
     minimizer(n_runs=1000)
 
