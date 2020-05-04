@@ -49,7 +49,7 @@ def main():
     t0 = time.time()
 
     rho_init = 0.1
-    results = opt.minimze(minimizer, rho_init, args=(1000))
+    results = opt.minimize(minimizer, rho_init, args=(1000))
     opt_rho = results.x
     opt_p = -results.fun
 
