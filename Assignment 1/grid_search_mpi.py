@@ -7,7 +7,7 @@ from mpi4py import MPI
 
 def sim_life_parallel(n_runs):
 
-	# Get rank of process and overall size of communicator:
+    # Get rank of process and overall size of communicator:
     comm = MPI.COMM_WORLD
     rank = comm.Get_rank()
     size = comm.Get_size()
@@ -18,7 +18,7 @@ def sim_life_parallel(n_runs):
     # Evenly distribute number of simulation runs across processes
     N = int(200 / size)
 
-	# Set model parameters
+    # Set model parameters
     mu = 3.0
     sigma = 1.0
     z_0 = mu
@@ -37,12 +37,12 @@ def sim_life_parallel(n_runs):
             for t_ind in range(T):
                 e_t = eps_mat[t_ind, s_ind]
                 z_t = rho * z_tm1 + (1 - rho) * mu + e_t
-                if z_t <= 0 or t_ind == t - 1:
+                if z_t <= 0 or t_ind == T - 1:
                     p.append(t_ind)
                     break
                 z_mat[t_ind, s_ind] = z_t
                 z_tm1 = z_t
-        p_avg = mean(p)
+        p_avg = np.mean(p)
         p_avg_list.append(np.array([rho, p_avg]))
 
 
