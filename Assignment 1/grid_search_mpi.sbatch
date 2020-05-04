@@ -1,7 +1,7 @@
 #!/bin/bash
 
-#SBATCH --job-name=mpi
-#SBATCH --output=mpi.out
+#SBATCH --job-name=grid_search_mpi
+#SBATCH --output=grid_search_mpi.out
 #SBATCH --ntasks=20
 #SBATCH --partition=broadwl
 #SBATCH --constraint=fdr
