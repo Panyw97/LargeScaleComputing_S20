@@ -20,9 +20,23 @@
 
 ### 3. Embarrassingly parallel processing: grid search
 
-5. **Web Scraping** performance highly depends on the network. Please make sure that you have a **good network** before you run the test.
+(a) Computation Time for MPI: 11.182556629180908 
 
-### Prerequisites
+(b) Computation Time for OpenCL: 0.12177801132202148  
+The OpenCL implementation is quite faster than MPI. This is because GPU is good at computing. As this task involves computing the average period of each rho, the advantage of using GPU is more explicit.
+
+(c) 
+
+(d) 
+The results from mpi4py implementation: 
+    The optimal rho is 0.03341708542713562
+    The period is 754.707
+
+The results from PyOpenCL implementation:  
+    The optimal rho is 0.004773869  
+    The period is 727.259  
+
+### 4.
 
 Please make sure **you have installed all of the modules mentioned in `requirements.txt`**. 
 
