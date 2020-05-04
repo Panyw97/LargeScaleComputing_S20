@@ -1,6 +1,7 @@
 import numpy as np
 import scipy.stats as sts
 import time
+import matplotlib.pyplot as plt
 from mpi4py import MPI
 
 
@@ -27,7 +28,7 @@ def sim_life_parallel(n_runs):
     
     z_mat = np.zeros((T, n_runs))
     z_mat[0, :] = z_0
-    p_avg_dict = {}
+    p_avg_list = []
     for rho_ind in range(N):
         rho = rho_l[rho_ind]
         p = []
@@ -42,23 +43,28 @@ def sim_life_parallel(n_runs):
                 z_mat[t_ind, s_ind] = z_t
                 z_tm1 = z_t
         p_avg = mean(p)
-        print(rho, p_avg)
-        p_avg_dict[rho] = p_avg
-    opt_rho = min(p_avg_dict, key=p_avg_dict.get)
-    opt_p = p_avg_dict[opt_rho]
+        p_avg_list.append(np.array([rho, p_avg]))
+
 
 # Gather all simulation arrays to buffer of expected size/dtype on rank 0
     rho_all = None
     if rank == 0:
-        rho_all = np.empty([1, size], dtype='float')
-    comm.Gather(sendbuf = (opt_rho, opt_p), recvbuf = rho_all, root=0)
+        rho_all = np.empty([200, 2], dtype='float')
+    comm.Gather(sendbuf = np.array(p_avg_list), recvbuf = rho_all, root=0)
     if rank == 0:
-        d = {}
-        for r, t in rho_all:
-            d[r] = t
-        opt_result = min(d, key=d.get)
+        opt_result = rho_all[np.argmax(rho_all, axis=0)[1]]
+        opt_rho = opt_result[0]
+        opt_period = opt_result[1]
         time_elapsed = time.time() - t0
-        print(time_elapsed)
+        print("The optimal rho is", opt_rho)
+        print("The period is", opt_period)
+        print("Computation Time:", time_elapsed)
+
+        plt.plot(rho_all[:, 0], rho_all[:, 1])
+        plt.xlabel('Value of Rho')
+        plt.ylabel('Average Periods to First Negative Health Value')
+        plt.title('Avg Periods VS Rho')
+        plt.savefig("Avg Periods VS Rho.png")
     return
 
 def main():
