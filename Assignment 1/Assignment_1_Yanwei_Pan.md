@@ -14,9 +14,9 @@
 
 ### 2. Clocking GPU parallelism
 
-(a) It takes 3.9098713397979736s to run.
+(a) It takes 2.310169219970703s to run.
 
-(b) This is quite longer than mpi4py implementation.
+(b) This is quite faster than the mpi4py implementation for 1 core. However, it's still slower than the multicore implementation. This is because we only use one GPU. Compared with CPU, GPU can run much faster for computation.
 
 ### 3. Embarrassingly parallel processing: grid search
 
