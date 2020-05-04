@@ -24,13 +24,22 @@ def sim_life_parallel(n_runs):
     z_0 = mu
     rho_l = np.linspace(-0.95, 0.95, 200)
     T = int(4160) # Set the number of periods for each simulation np.random.seed(25)
-    eps_mat = sts.norm.rvs(loc=0, scale=sigma, size=(T, n_runs))
+    
+    if rank == 0:
+        np.random.seed(25)
+        eps_mat = sts.norm.rvs(loc=0, scale=sigma, size=(T, n_runs))
+        send = np.linspace(-0.95, 0.95, 200)
+    else:
+        eps_mat = np.empty((T, n_runs))
+        send = None
+    recv = np.empty(N)
+    comm.Bcast(eps_mat, root=0)
+    comm.Scatter(send, recv, root=0)
     
     z_mat = np.zeros((T, n_runs))
     z_mat[0, :] = z_0
     p_avg_list = []
-    for rho_ind in range(N):
-        rho = rho_l[rho_ind]
+    for rho in recv:
         p = []
         for s_ind in range(n_runs):
             z_tm1 = z_0
