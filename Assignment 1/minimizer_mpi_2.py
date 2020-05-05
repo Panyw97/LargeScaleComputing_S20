@@ -50,7 +50,7 @@ def parallel_function_caller(rho, stopp):
         # Gather all simulation arrays to buffer of expected size/dtype on rank 0
         recvbuf = None
         if rank == 0:
-            recvbuf = np.empty([N * size, 1], dtype='float')
+            recvbuf = np.empty([N * size, 1], dtype='int')
         comm.Gather(sendbuf, recvbuf, root=0)
 
         if rank == 0:
