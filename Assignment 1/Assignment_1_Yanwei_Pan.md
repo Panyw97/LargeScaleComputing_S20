@@ -43,7 +43,8 @@ The results from PyOpenCL implementation:
 
 ### 4. More sophisticated parallelism: minimizer
 
-(a)  Code: [minimizer_mpi.py](https://github.com/Panyw97/LargeScaleComputing_S20/blob/master/Assignment%201/minimizer_mpi.py)  Computation Time for MPI: 
+(a)  Code: [minimizer_mpi.py](https://github.com/Panyw97/LargeScaleComputing_S20/blob/master/Assignment%201/minimizer_mpi.py)  
+Computation Time for MPI: 
 
 
 (b)  Code: [minimizer_opencl.py](https://github.com/Panyw97/LargeScaleComputing_S20/blob/master/Assignment%201/minimizer_opencl.py)  
