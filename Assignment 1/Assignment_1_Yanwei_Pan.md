@@ -44,16 +44,19 @@ The results from PyOpenCL implementation:
 ### 4. More sophisticated parallelism: minimizer
 
 (a)  Code: [minimizer_mpi.py](https://github.com/Panyw97/LargeScaleComputing_S20/blob/master/Assignment%201/minimizer_mpi.py)  
-Computation Time for MPI: 
-
+Computation Time for MPI: 20.86929202079773    
 
 (b)  Code: [minimizer_opencl.py](https://github.com/Panyw97/LargeScaleComputing_S20/blob/master/Assignment%201/minimizer_opencl.py)  
 Computation Time for OpenCL: 15.51089358329773  
 
 (c)  
 The results from mpi4py implementation:  
-    The optimal rho is 0.03341708542713562  
-    The period is 754.707  
+    The optimal rho is 0.10005436756323129  
+    The period is 2611.584  
+    (However, as I ran the same code on Colab, the result is:  
+    The optimal rho is 0.09992672365444555  
+    The period is 716.863  
+    which seems to be the correct answer. But I haven't debugged it successfully.)  
 
 The results from PyOpenCL implementation:  
     The optimal rho is 0.09998509  
