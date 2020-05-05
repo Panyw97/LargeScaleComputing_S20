@@ -31,7 +31,6 @@ def parallel_function_caller(rho, stopp):
         else:
             eps_mat = np.empty((N, T))
         comm.Bcast(eps_mat, root=0)
-        # print("rank: %d and %s", (rank, eps_mat))
         z_mat = np.zeros((N, T))
         z_mat[:, 0] = z_0
         p = []
@@ -64,12 +63,11 @@ if __name__ == '__main__':
         t0 = time.time()
         rho_init = 0.1
         results = opt.minimize(parallel_function_caller, rho_init, args=(stop,))
-        # parallel_function_caller(rho_init)
         opt_rho = results.x
         opt_p = -results.fun
 
         time_elapsed = time.time() - t0
-        print("The optimal rho is", opt_rho)
+        print("The optimal rho is", opt_rho[0])
         print("The period is", opt_p)
         print("Computation Time:", time_elapsed)
         stop = [1]
