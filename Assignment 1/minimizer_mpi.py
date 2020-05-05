@@ -62,7 +62,7 @@ if __name__ == '__main__':
         stop = [0]
         t0 = time.time()
         rho_init = 0.1
-        results = opt.minimize(parallel_function_caller, rho_init, args=(stop,), options={'maxiter': 100})
+        results = opt.minimize(parallel_function_caller, rho_init, args=(stop,))
         opt_rho = results.x
         opt_p = -results.fun
 
